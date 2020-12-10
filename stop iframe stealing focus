@@ -1,0 +1,8 @@
+//The thinking being that if it is some focus stealing script on a remote page that you can't control, the browser won't focus a hidden element. And there's a good //likelihood that your onload will fire after their focus changing script.
+
+// Or, one other option that might be a bit more reliable:
+
+<iframe style="position: absolute; top: -9999em; visibility: hidden;" onload="this.style.position='static'; this.style.visibility='visible';" src="..."></iframe>
+
+//Here we're basically saying hiding the frame and moving it to a negative offset on the page vertically. When it does try to focus the element inside of the frame, //it should scroll the page upward, then once loaded place the iframe back in it's intended position.
+// src: https://stackoverflow.com/questions/6596668/iframe-on-the-page-bottom-avoid-automatic-scroll-of-the-page
